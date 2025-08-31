@@ -634,32 +634,35 @@ function App() {
       <button className="border-2    bg-red-500 m-4 hover:shadow-lg shadow-gray-500/80 rounded-lg p-3 hover:cursor-pointer" onClick={onPress} >Start Workout</button>
        <button className="border-2 hover:shadow-lg shadow-gray-500/80 bg-red-500 rounded-lg p-3 hover:cursor-pointer" onClick={stopWorkout} >Stop Workout</button>
       </span>
+      <div className="flex flex-col lg:flex-row items-center lg:items-stretch justify-center">
+
       { liveVideo === true?
       <div className="m-4 mb-2 ">
         <img
           src="http://localhost:5000/video"
           alt="AI Gym Trainer"
           className="rounded-lg shadow-lg border-4 border-orange-500  "
-        />
+          />
       </div>:  <div></div>
       }
       {liveVideo && (
-          <div className="m-3 mt-1 p-4 bg-gray-800 rounded-lg shadow-lg text-left text-2xl w-80 text-white">
+        <div className="m-3  p-4 bg-gray-800 rounded-lg shadow-lg text-left text-2xl w-80 text-white font-heading">
             <h2 className="text-3xl font-bold mb-3 text-orange-500 text-center">WORKOUT STATS</h2>
             <div className="mb-2">
-              <p className="font-semibold">REPS:</p>
+              <p className="font-semibold font-sans">REPS:</p>
               <p className="text-3xl font-bold text-green-400">{reps}</p>
             </div>
             <div className="mb-2">
-              <p className="font-semibold">FORM:</p>
+              <p className="font-semibold font-sans">FORM:</p>
               <p className={`text-3xl font-bold ${form === 'Good Form' ? 'text-green-400' : 'text-red-500'}`}>{form}</p>
             </div>
             <div>
-              <p className="font-semibold">ACCURACY:</p>
+              <p className="font-semibold font-sans">ACCURACY:</p>
               <p className={`text-3xl font-bold ${accuracy > 85 ? 'text-green-400' : 'text-yellow-500'}`}>{accuracy}%</p>
             </div>
           </div>
         )}
+        </div>
     </div>
   );
 }
