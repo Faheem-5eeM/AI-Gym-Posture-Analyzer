@@ -575,34 +575,91 @@ import "./App.css";
 
 function App() {
   const [liveVideo, setLiveVideo] = useState(false);
+  const [reps, setReps] = useState(0);
+  const [form, setForm] = useState('N/A');
+  const [accuracy, setAccuracy] = useState(0);
+
+   useEffect(() => {
+    let eventSource;
+    if (liveVideo) {
+      // Create a new EventSource connection to our /data route
+      eventSource = new EventSource("http://localhost:5000/data");
+      console.log("Event source working")
+
+      // Listen for messages from the server
+      eventSource.onmessage = (event) => {
+        const data = JSON.parse(event.data);
+        // Update state with the new data
+        setReps(data.reps);
+        setForm(data.form);
+        setAccuracy(data.accuracy);
+      };
+
+      // Handle any errors
+      eventSource.onerror = (err) => {
+        console.error("EventSource failed:", err);
+        eventSource.close();
+      };
+    }
+
+    // This cleanup function will be called when the component unmounts
+    // or when liveVideo becomes false
+    return () => {
+      if (eventSource) {
+        eventSource.close();
+      }
+    };
+  }, [liveVideo]); // This effect depends on the liveVideo state
+
+
   async function onPress()  {
    setLiveVideo(true);
-   await fetch("http://localhost:5000/video", {
+   fetch("http://localhost:5000/video", {
       method: "GET",
     });
   }
   async function stopWorkout(){
     setLiveVideo(false);
+    setReps(0);
+    setForm('N/A');
+    setAccuracy(0);
     await fetch("http://localhost:5000/stop", {
       method: "POST",
     });
   }
   return (
-    <div className="min-h-screen text-center flex flex-col gap-25 items-center bg-black">
-      <h1 className="text-blue-500 text-8xl font-heading font-bold mt-15">AI Gym Posture Analyzer</h1>
+    <div className="min-h-screen text-center flex flex-col gap-10 items-center bg-black">
+      <h1 className="text-blue-500 text-3xl font-heading font-bold mt-10">AI Gym Posture Analyzer</h1>
       <span>
-      <button className="border-2    bg-red-500 m-4 hover:shadow-lg shadow-gray-500/80 rounded-lg p-4" onClick={onPress} >Start Workout</button>
-       <button className="border-2 hover:shadow-lg shadow-gray-500/80 bg-red-500 rounded-lg p-4" onClick={stopWorkout} >Stop Workout</button>
+      <button className="border-2    bg-red-500 m-4 hover:shadow-lg shadow-gray-500/80 rounded-lg p-3 hover:cursor-pointer" onClick={onPress} >Start Workout</button>
+       <button className="border-2 hover:shadow-lg shadow-gray-500/80 bg-red-500 rounded-lg p-3 hover:cursor-pointer" onClick={stopWorkout} >Stop Workout</button>
       </span>
       { liveVideo === true?
-      <div className="  ">
+      <div className="m-4 mb-2 ">
         <img
           src="http://localhost:5000/video"
           alt="AI Gym Trainer"
-          className="rounded-lg shadow-lg border-4 border-orange-500 mb-15"
+          className="rounded-lg shadow-lg border-4 border-orange-500  "
         />
       </div>:  <div></div>
       }
+      {liveVideo && (
+          <div className="m-3 mt-1 p-4 bg-gray-800 rounded-lg shadow-lg text-left text-2xl w-80 text-white">
+            <h2 className="text-3xl font-bold mb-3 text-orange-500 text-center">WORKOUT STATS</h2>
+            <div className="mb-2">
+              <p className="font-semibold">REPS:</p>
+              <p className="text-3xl font-bold text-green-400">{reps}</p>
+            </div>
+            <div className="mb-2">
+              <p className="font-semibold">FORM:</p>
+              <p className={`text-3xl font-bold ${form === 'Good Form' ? 'text-green-400' : 'text-red-500'}`}>{form}</p>
+            </div>
+            <div>
+              <p className="font-semibold">ACCURACY:</p>
+              <p className={`text-3xl font-bold ${accuracy > 85 ? 'text-green-400' : 'text-yellow-500'}`}>{accuracy}%</p>
+            </div>
+          </div>
+        )}
     </div>
   );
 }
