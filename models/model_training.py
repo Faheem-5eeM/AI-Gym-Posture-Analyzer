@@ -9,7 +9,7 @@ import pickle
 # ==============================================================================
 # Make sure your CSV file is in the same directory as this script,
 # or provide the full path to it.
-CSV_PATH = 'squat_form_data.csv' 
+CSV_PATH = 'shoulder_press_form_data.csv' 
 df = pd.read_csv(CSV_PATH)
 
 print("Dataset loaded successfully.")
@@ -62,8 +62,11 @@ print(f"\nModel Accuracy on Test Data: {accuracy * 100:.2f}%")
 # ==============================================================================
 # We save the trained model to a file using 'pickle'.
 # This allows us to load and use it in our Flask app without retraining.
-model_filename = 'squat_form_model.pkl'
+model_filename = 'shoulderPress_form_model.pkl'
 with open(model_filename, 'wb') as f:
     pickle.dump(model, f)
 
 print(f"\nModel saved successfully as '{model_filename}'! ✨")
+print(f"Model classes found: {list(model.classes_)}")
+
+
