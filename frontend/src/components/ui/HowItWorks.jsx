@@ -2,10 +2,10 @@ import { ListCheck, Camera, TrendingUp } from "lucide-react";
 
 function HowItWorks() {
   return (
-    <div>
-      <h2 className="text-white text-3xl m-4 p-4 ">How It Works</h2>
+    <div id="how-it-works" className="w-full">
+      <h2 className="text-[#cfb498] text-3xl m-4 p-4 ">How It Works</h2>
       <div className="md:flex md:flex-row md:justify-center md:items-center">
-        <div className="border-2  border-white rounded-lg p-3 m-7 mt-1 md:m-4 text-white ">
+        <div className="border-2 shadow-md hover:shadow-lg hover:shadow-gray-500/50  border-white rounded-lg p-3 m-7 mt-1 md:m-4 text-[#cfb498] ">
           <span className="flex flex-row items-center justify-center">
             <div className="bg-[#cfb498] rounded-lg p-1">
               <ListCheck className=" " size={35} color="white" />
@@ -16,7 +16,7 @@ function HowItWorks() {
             Select an exercise to analyze.
           </p>
         </div>
-        <div className="border-2  border-white rounded-lg p-3 m-7 md:m-4 text-white ">
+        <div className="border-2 shadow-md hover:shadow-lg hover:shadow-gray-500/50 border-white rounded-lg p-3 m-7 md:m-4 text-[#cfb498] ">
           <span className="flex flex-row items-center justify-center ml-1">
             <div className="bg-[#cfb498] rounded-lg p-1 ">
               <Camera className=" " size={35} color="white" />
@@ -27,7 +27,7 @@ function HowItWorks() {
             Enable your camera to begin tracking.
           </p>
         </div>
-        <div className="border-2  border-white rounded-lg p-3 m-7 md:m-4 text-white ">
+        <div className="border-2 shadow-md hover:shadow-lg hover:shadow-gray-500/50 border-white rounded-lg p-3 m-7 md:m-4 text-[#cfb498] ">
           <span className="flex flex-row items-center justify-center">
             <div className="bg-[#cfb498] rounded-lg p-1">
               <TrendingUp className=" " size={35} color="white" />

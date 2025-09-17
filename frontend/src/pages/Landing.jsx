@@ -9,7 +9,9 @@ function Landing() {
       <Navbar />
       <div className="m-18" />
       <Hero />
+      <div className="md:m-38 m-15" />
       <ExerciseList />
+      <div className="m-18" />
       <HowItWorks />
     </div>
   );
