@@ -5,9 +5,9 @@ import HowItWorks from "../components/ui/HowItWorks";
 
 function Landing() {
   return (
-    <div className="w-full">
+    <div className="w-full bg-white">
       <Navbar />
-      <div className="m-18" />
+      <div className="" />
       <Hero />
       <div className="md:m-38 m-15" />
       <ExerciseList />

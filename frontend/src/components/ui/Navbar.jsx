@@ -1,7 +1,7 @@
 import { Dumbbell } from 'lucide-react';
 function Navbar() {
     return (
-        <nav className="w-full bg-[#cfb498] flex md:fixed justify-between items-center  md:flex-row">
+        <nav className="w-full bg-[#cfb498] md:h-20 flex md:sticky md:top-0 z-99 justify-between items-center  md:flex-row">
                 <span className="md:m-4 flex p-2 text-white   md:text-left text-3xl ">
                     <Dumbbell className="inline mr-2 " size={35} color="white" />
                     <p>FORM AI

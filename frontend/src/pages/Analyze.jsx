@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import Navbar from "../components/ui/Navbar"
 function Analyze() {
   const [liveVideo, setLiveVideo] = useState(false);
   const [reps, setReps] = useState(0);
@@ -61,7 +61,8 @@ function Analyze() {
   }
 
   return (
-    <div>
+    <div className="bg-white h-screen w-full">
+      <Navbar />
       <h1 className="text-blue-500 text-3xl font-heading font-bold mt-10">
         AI Gym Posture Analyzer
       </h1>

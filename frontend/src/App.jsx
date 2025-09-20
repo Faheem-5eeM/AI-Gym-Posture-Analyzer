@@ -6,7 +6,7 @@ import HowItWorks from "./components/ui/HowItWorks";
 
 function App() {
   return (
-    <main className="min-h-screen text-center flex flex-col gap-10 items-center bg-white">
+    <main className="min-h-screen text-center flex flex-col gap-10 items-center">
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/analyze" element={<Analyze />} />
